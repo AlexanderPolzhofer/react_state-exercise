@@ -2,6 +2,20 @@
   text-align: center;
 }
 
+.heading{
+  font-size: xx-large;
+  font-weight: bolder;
+  border-style: solid;
+  margin:55px;
+  padding:21px;
+}
+
+.app-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
