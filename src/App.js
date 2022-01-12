@@ -1,41 +1,34 @@
 import './App.css';
+import React, { useState } from 'react'
 import Vote from "./components/Vote.js";
-import { Component } from 'react';
 
-class App extends Component {
+const App = () => {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      xVotes: 0,
-      yVotes: 0
-    }
-  }
+  const [xVotes, setXVotes] = useState(0);
+  const [yVotes, setYVotes] = useState(0);
 
-  votes = (numberofvotes, name) => {
+  const votes = (numberofvotes, name) => {
 
-    if (name == "Kandidat X") {
-      this.setState({
-        xVotes: numberofvotes
-      })
+    if (name === "Kandidat X") {
+      setXVotes(numberofvotes)
     } else {
-      this.setState({
-        yVotes: numberofvotes
-      })
+      setYVotes(numberofvotes)
     }
   }
 
-  render() {
-    return (
-      <div className="App">
-        <div className="heading">Summe: {this.state.xVotes + this.state.yVotes}</div>
-        <div className="app-container">
-          <Vote name="Kandidat X" onIncrement={this.votes} />
-          <Vote name="Kandidat Y" onIncrement={this.votes} />
-        </div>
-      </div>
-    );
+  const amountOfVots = () => {
+    return xVotes + yVotes;
   }
+
+  return (
+    <div className="App">
+      <div className="heading">Summe: {amountOfVots()}</div>
+      <div className="app-container">
+        <Vote name="Kandidat X" onIncrement={votes} />
+        <Vote name="Kandidat Y" onIncrement={votes} />
+      </div>
+    </div>
+  );
 }
 
 export default App;
