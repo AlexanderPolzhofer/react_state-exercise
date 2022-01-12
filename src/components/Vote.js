@@ -1,32 +1,23 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import votestyle from "./Vote.module.css";
 
-class Vote extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { numberofvotes: 0 }
+const Vote = ({ onIncrement, name }) => {
+
+    const [numberOfVotes, setNumberOfVotes] = useState(0);
+
+    const incrementVotes = () => {
+        let newAmountOfVotes = numberOfVotes + 1;
+        setNumberOfVotes(newAmountOfVotes);
+
+        onIncrement(newAmountOfVotes, name);
     }
 
-    incrementVotes = () => {
-        let newAmountOfVotes = this.state.numberofvotes + 1;
-        this.setState({
-            numberofvotes: newAmountOfVotes
-        })
-
-        this.props.onIncrement(newAmountOfVotes, this.props.name);
-
-    }
-
-    render() {
-        return (
-            <div className={votestyle.card} onClick={this.incrementVotes}>
-                <div className={votestyle.item}>{this.props.name}</div>
-                <div className={votestyle.item}>{this.state.numberofvotes}</div>
-            </div>
-
-
-        );
-    }
+    return (
+        <div className={votestyle.card} onClick={incrementVotes}>
+            <div className={votestyle.item}>{name}</div>
+            <div className={votestyle.item}>{numberOfVotes}</div>
+        </div>
+    );
 }
 
 export default Vote;

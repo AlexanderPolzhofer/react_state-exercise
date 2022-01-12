@@ -8,7 +8,6 @@ const App = () => {
   const [yVotes, setYVotes] = useState(0);
 
   const votes = (numberofvotes, name) => {
-
     if (name === "Kandidat X") {
       setXVotes(numberofvotes)
     } else {
